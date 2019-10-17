@@ -17,8 +17,8 @@ syn match grepLhClass /\[[[:alnum:]]\{8\} [^\]]\+\] \[[[:alnum:]:~]\+\]/ contain
 syn match grepOwner / [^\[ :']\+:/ contained containedin=grepLhOwner
 syn match grepClass /\[[[:alnum:]:~]\+\]/ contained containedin=grepLhClass
 
-syn match grepOpId /grepOpId=[[:alnum:]-]\+/
-syn match grepLhOpId /grepOpId=[[:alnum:]-]\+/ contained containedin=grepLineHdr,grepLhOwner
+syn match grepOpId /opID=[[:alnum:]-]\+/
+syn match grepLhOpId /opID=[[:alnum:]-]\+/ contained containedin=grepLineHdr,grepLhOwner,grepLhClass
 syn match grepId /[0-9]\{16\}/
 
 " 行番号 だけ （ファイルパスは grepFilePath で上書き）
@@ -27,16 +27,19 @@ hi def link grepFpLineNum Special
 hi def link grepFilePath String
 hi def link grepDateTime Comment
 
-hi def link grepLineHdr Function
-hi def link grepLhOwner Function
-hi def link grepLhClass Function
+hi def link grepLineHdr grepLineHdrs
+hi def link grepLhOwner grepLineHdrs
+hi def link grepLhClass grepLineHdrs
+hi def link grepLineHdrs Function
 
-hi def link grepOwner Title
-hi def link grepClass Title
+hi def link grepOwner grepIndicators
+hi def link grepClass grepIndicators
+hi def link grepIndicators Title
 
-hi def link grepOpId LineNr
-hi def link grepLhOpId LineNr
-hi def link grepId LineNr
+hi def link grepOpId grepIds
+hi def link grepLhOpId grepIds
+hi def link grepId grepIds
+hi def link grepIds DiffChange
 
 let b:current_syntax = "grep"
 
